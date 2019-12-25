@@ -33,6 +33,10 @@ class ContactController extends Controller
             'inputs' => $inputs,
         ]);
     }
+        //添付ファイルの保存
+    public function store(Request $request){
+        $request->file('file')->store('');
+     }
 
     public function send(Request $request)
     {
@@ -66,13 +70,11 @@ class ContactController extends Controller
             ]);
             //メールアドレスにメールを送信
             // \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
-
             //トークンの発効（再送信防止用）
             $request->session()->regenerateToken();
 
             //送信完了画面表示
             return view('contact.thanks');
-            
         }
     }
 }

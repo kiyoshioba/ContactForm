@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-offset-4 col-xs-4">
             <h1>お問い合わせ</h1>
-            <form method="POST" action="{{ route('contact.confirm') }}">
+            <form method="POST" action="{{ route('contact.confirm') }}"　enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
