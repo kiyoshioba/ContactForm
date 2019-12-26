@@ -61,15 +61,15 @@ class ContactController extends Controller
                 ->withInput($inputs);
 
         } else {
-            $data = session()->all();
-            DB::table('ContactForm')->insert([
-                    'user_name' => $data["user_name"],
-                    'email' => $data["email"],
-                    'title' => $data["title"],
-                    'body' => $data["body"],
-            ]);
+            // $data = session()->all();
+            // DB::table('ContactForm')->insert([
+            //         'user_name' => $data["user_name"],
+            //         'email' => $data["email"],
+            //         'title' => $data["title"],
+            //         'body' => $data["body"],
+            // ]);
             //メールアドレスにメールを送信
-            // \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+            \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
             //トークンの発効（再送信防止用）
             $request->session()->regenerateToken();
 
