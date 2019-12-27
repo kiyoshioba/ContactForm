@@ -6,7 +6,7 @@
         <div class="col-xs-offset-4 col-xs-4">
             <h1>確認画面</h1>
             <h4>入力した内容を確認してください</h4>
-            <form method="POST" action="{{ route('contact.send') }}">
+            <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
 
                 <div class="form-group">
