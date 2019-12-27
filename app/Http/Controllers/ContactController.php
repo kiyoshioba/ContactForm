@@ -49,7 +49,7 @@ class ContactController extends Controller
 
         return view('contact.thanks');
     }
-// -----------------------------一旦残しておく-----------------------
+// ------------------------投稿と同時にメール送信もしたいので、一旦残しておく-----------------------
     // public function send(Request $request)
     // {
     //     //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
