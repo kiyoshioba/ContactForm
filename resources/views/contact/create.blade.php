@@ -48,10 +48,9 @@
                 @endif
                 </div>
 
-                <!-- 添付ファイルはフロントエンドのみしか実装していないことに留意 -->
                 <div class="form-group">
-                <label>添付ファイル（任意）</label>
-                    <input type="file" id="file" name="file" class="form-control">
+                <label>音声ファイル（任意）</label>
+                    <input type="file"  name="file" class="form-control" value="{{ old('file') }}">
                 </div>
 
                 <button type="submit" class="btn btn-success btn-block">入力内容確認</button>
