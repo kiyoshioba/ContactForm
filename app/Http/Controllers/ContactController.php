@@ -24,8 +24,8 @@ class ContactController extends Controller
             'email' => 'required|email',
             'title' => 'required',
             'body'  => 'required',
+            'file' => 'nullable',
         ]);
-        
          // 入力画面から受け取ったinput値の取得
         $inputs = $request->all();
 
@@ -42,6 +42,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'title' => 'required',
             'body' => 'required',
+            'file' => 'nullable',
         ]);
         // $request->file('file')->store('');
 

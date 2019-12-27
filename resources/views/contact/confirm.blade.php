@@ -6,7 +6,7 @@
         <div class="col-xs-offset-4 col-xs-4">
             <h1>確認画面</h1>
             <h4>入力した内容を確認してください</h4>
-            <form method="POST" action="{{ route('contact.store') }}">
+            <form method="POST" action="{{ route('contact.store') }}"　enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
@@ -36,6 +36,12 @@
                     type="hidden">
                 
                 <br>
+                <div class="form-group">
+                <label>音声ファイル</label>
+                <br>{{ $inputs['file'] }}
+                    <input type="hidden" class="form-control" name="file" value="{{ $inputs['file'] }}">
+                </div>
+
                 <button type="submit" class="btn btn-success btn-block" name="action" value="back"　style="background-color:red;">
                     入力内容修正
                 </button>
