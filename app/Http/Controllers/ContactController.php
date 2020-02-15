@@ -23,8 +23,9 @@ class ContactController extends Controller
             'user_name' => 'required',
             'email' => 'required|email',
             'title' => 'required',
-            'body'  => 'required',
             'file' => 'nullable',
+            'score'=> 'nullable',
+            'body'  => 'required',
         ]);
          // 入力画面から受け取ったinput値の取得
         $inputs = $request->all();
@@ -34,60 +35,42 @@ class ContactController extends Controller
             'inputs' => $inputs,
         ]);
     }
-    // 問い合わせ情報の保存
+    // 問い合わせ情報の保存＆メールの送信
     public function store(Request $request)
     {
         $params = $request->validate([
             'user_name' => 'required',
             'email' => 'required|email',
             'title' => 'required',
-            'body' => 'required',
             'file' => 'nullable',
+            'score'=> 'nullable',
+            'body' => 'required',
         ]);
-        // $request->file('file')->store('');
 
         Contact::create($params);
 
         return view('contact.thanks');
+
     }
-// ------------------------投稿と同時にメール送信もしたいので、一旦残しておく-----------------------
-    // public function send(Request $request)
-    // {
-    //     //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
-    //     $request->validate([
-    //         'user_name' => 'required',
-    //         'email' => 'required|email',
-    //         'title' => 'required',
-    //         'body'  => 'required'
-    //     ]);
 
-    //     //入力画面からactionの値を取得
-    //     $action = $request->input('action');
 
-    //     //入力画面からaction以外の値を取得
-    //     $inputs = $request->except('action');
+    public function board(Request $request){
+        $posts = Contact::orderBy('created_at', 'desc')->paginate(20);
 
-    //     //actionの値で(内容の修正と送信確定に分岐
-    //     if($action !== 'submit'){
-    //         return redirect()
-    //             ->route('contact.index')
-    //             ->withInput($inputs);
+        return view('board.index', ['posts' => $posts]);
+    }
+    
 
-    //     } else {
-    //         // $data = session()->all();
-    //         // DB::table('ContactForm')->insert([
-    //         //         'user_name' => $data["user_name"],
-    //         //         'email' => $data["email"],
-    //         //         'title' => $data["title"],
-    //         //         'body' => $data["body"],
-    //         // ]);
-    //         //メールアドレスにメールを送信
-    //         \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
-    //         //トークンの発効（再送信防止用）
-    //         $request->session()->regenerateToken();
 
-    //         //送信完了画面表示
-    //         return view('contact.thanks');
-    //     }
-    // }
+
+
+    public function show($post_id)
+    {
+        $post = Contact::findOrFail($post_id);
+    
+        return view('posts.show', [
+            'post' => $post,
+        ]);
+    }
+
 }

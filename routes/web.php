@@ -14,17 +14,11 @@
 // Route::get('index', 'ContactController@index');
 //入力ページ
 Route::get('contact/create', 'ContactController@create');
-//確認ページ
+//確認＆投稿ページ
 Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
 // Route::get('/contact', 'ContactController@index')->name('contact.create');
-// 投稿機能（試験的導入）
+//完了ページ
 Route::POST('/contact/thanks', 'ContactController@store')->name('contact.store');
-//確認ページ
-// Route::post('/contact/confirm', 'ContactController@store')->name('contact.store');
 
-
-
-//送信完了ページ
-// Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
-
-
+//問い合わせ一覧表示画面
+Route::get('/contact/Board','ContactController@board')->name('contact.board');
