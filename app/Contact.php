@@ -9,9 +9,10 @@ class Contact extends Model
     protected $fillable = [
         'user_name',
         'email',
-        'title',
-        // 'audio',audiosテーブルを作成したのでそちらにリレーション
-        'score',
+        // audiosテーブルを作成したのでそちらにリレーション
+        // 'title',
+        // 'audio',
+        // 'score',
         'body',
     ];
     // Audioモデルとリレーション
