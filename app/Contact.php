@@ -10,8 +10,12 @@ class Contact extends Model
         'user_name',
         'email',
         'title',
-        'audio',
+        // 'audio',audiosテーブルを作成したのでそちらにリレーション
         'score',
         'body',
     ];
+    // Audioモデルとリレーション
+    public function audios(){
+        return $this->hasMany(Audio::class);
+    }
 }

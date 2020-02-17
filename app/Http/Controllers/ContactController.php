@@ -47,34 +47,6 @@ class ContactController extends Controller
             'score'=> 'nullable',
             'body' => 'required',
         ]);
-         // ファイルが複数の場合のアップロード処理
-            if(is_array($request->file('audio')))
-            {
-            $audios=array();
-            foreach($request->file('audio') as $file) {
-                $uniqueid=uniqid();
-                $original_name=$file->getClientOriginalName();
-                $size=$file->getSize();
-                $extension=$file->getClientOriginalExtension();
-                $filename=Carbon::now()->format('Ymd').'_'.$uniqueid.'.'.$extension;
-                $audiopath=url('/storage/upload/files/audio/'.$filename);
-                $path=$file->storeAs('/upload/files/audio',$filename);
-                array_push($audios,$audiopath);
-            }
-            $all_audios=implode(",",$audios);
-            }else{ 
-            // ファイルが一つの場合のアップロード処理
-            if($request->hasFile('audio')){
-                $uniqueid=uniqid();
-                $original_name=$request->file('audio')->getClientOriginalName();
-                $size=$request->file('audio')->getSize();
-                $extension=$request->file('audio')->getClientOriginalExtension();
-                $filename=Carbon::now()->format('Ymd').'_'.$uniqueid.'.'.$extension;
-                $audiopath=url('/storage/upload/files/audio/'.$filename);
-                $path=$file->storeAs('public/upload/files/audio/',$filename);
-                $all_audios=$audiopath;
-            }
-        }
         // フォームから受け取ったactionの値を取得
         $action = $request->input('action');
         // フォームから受け取ったactionを除いたinputの値を取得
