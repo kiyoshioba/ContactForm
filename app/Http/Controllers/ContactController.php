@@ -38,6 +38,7 @@ class ContactController extends Controller
     // 問い合わせ情報の保存＆メールの送信
     public function store(Request $request)
     {
+        // バリデーションを実行
         $params = $request->validate([
             'user_name' => 'required',
             'email' => 'required|email',
@@ -46,31 +47,45 @@ class ContactController extends Controller
             'score'=> 'nullable',
             'body' => 'required',
         ]);
-
+        // フォームから受け取ったactionの値を取得
+        $action = $request->input('action');
+        // フォームから受け取ったactionを除いたinputの値を取得
+        $inputs = $request->except('action');
+        //actionの値で分岐
+        if($action !== 'submit'){
+            return redirect()
+                ->route('contact.create')
+                ->withInput($inputs);
+        }else{
+        // 新規パラメーターの作成
         Contact::create($params);
-
+        // 入力されたメールアドレスにメールを送信
+        \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+        // 再送信を防ぐためにトークンを再発行
+        $request->session()->regenerateToken();
+        // 送信完了ページのviewを表示させる
         return view('contact.thanks');
+        }
+
 
     }
 
+    // public function board(Request $request){
+    //     $posts = Contact::orderBy('created_at', 'desc')->paginate(20);
 
-    public function board(Request $request){
-        $posts = Contact::orderBy('created_at', 'desc')->paginate(20);
-
-        return view('board.index', ['posts' => $posts]);
-    }
+    //     return view('board.index', ['posts' => $posts]);
+    // }
     
 
 
 
-
-    public function show($post_id)
-    {
-        $post = Contact::findOrFail($post_id);
+    // public function show($post_id)
+    // {
+    //     $post = Contact::findOrFail($post_id);
     
-        return view('posts.show', [
-            'post' => $post,
-        ]);
-    }
+    //     return view('posts.show', [
+    //         'post' => $post,
+    //     ]);
+    // }
 
 }
