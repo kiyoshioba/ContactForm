@@ -10,7 +10,7 @@ class Contact extends Model
         'user_name',
         'email',
         'title',
-        'file',
+        'audio',
         'score',
         'body',
     ];

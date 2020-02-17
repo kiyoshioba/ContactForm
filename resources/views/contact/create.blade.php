@@ -34,7 +34,7 @@
 
                 <div class="form-group">
                 <label>音声ファイル</label>
-                    <input type="file"  name="file" class="form-control" value="{{ old('file') }}" >
+                    <input type="file"  name="audio" class="form-control" value="{{ old('audio') }}" multiple>
                 </div>
 
                 <div class="form-group">

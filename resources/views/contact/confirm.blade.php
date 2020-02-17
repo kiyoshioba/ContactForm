@@ -29,8 +29,8 @@
 
                 <div class="form-group">
                 <label>音声ファイル</label>
-                <br>{{ $inputs['file'] }}
-                    <input type="hidden" class="form-control" name="file" value="{{ $inputs['file'] }}">
+                <br>{{ $inputs['audio'] }}
+                    <input type="hidden" class="form-control" name="audio" value="{{ $inputs['audio'] }}" multiple>
                 </div>
 
                 <div class="form-group">
