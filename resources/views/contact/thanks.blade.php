@@ -4,6 +4,8 @@
 <h1 class="page-title">送信完了</h1>
   <p class="page-read">お問い合わせありがとうございました。<br>後日、担当者よりご連絡差し上げます。</p>
 
+  <a href="http://127.0.0.1:8000/contact/create">続けて解析依頼を出す方はこちら</a>
+
   <hr width="100%">
 
   <p class="page-read">進化するUpSighter！バリエーションも増加中！</p>

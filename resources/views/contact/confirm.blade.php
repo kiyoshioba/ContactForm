@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                 <label>トークの自己採点</label>
-                <br>{{ $inputs['score']}}
+                <br>{{ $inputs['score']}}点
                     <input type="hidden" class="form-control" name="score" value="{{ $inputs['score']}}">
                 </div>
 
@@ -46,7 +46,7 @@
                 <br>
                 </div>
 
-                <button type="submit" class="btn btn-success btn-block" name="action" value="back"　style="background-color:red;">
+                <button type="submit" class="btn btn-block btn-back" name="action" value="back">
                     入力内容修正
                 </button>
                 <button type="submit" class="btn btn-success btn-block" name="action" value="submit">

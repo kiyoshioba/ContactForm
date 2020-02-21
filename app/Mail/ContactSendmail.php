@@ -54,5 +54,6 @@ class ContactSendmail extends Mailable
                 'score' => $this->score,
                 'body'  => $this->body,
             ]);
+            // ->attach(storage_path(''));;
     }
 }
